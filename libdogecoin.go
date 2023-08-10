@@ -229,28 +229,28 @@ func W_store_raw_transaction(incoming_raw_tx string) (result int) {
 	return
 }
 
-func W_sign_message(privkey string, msg string) (result string) {
-	c_privkey := C.CString(privkey)
-	c_msg := C.CString(msg)
-	c_result := C.sign_message(c_privkey, c_msg)
-	result = C.GoString(c_result)
-	C.dogecoin_free(unsafe.Pointer(c_result))
-	C.free(unsafe.Pointer(c_privkey))
-	C.free(unsafe.Pointer(c_msg))
-	return
-}
+// func W_sign_message(privkey string, msg string) (result string) {
+// 	c_privkey := C.CString(privkey)
+// 	c_msg := C.CString(msg)
+// 	c_result := C.sign_message(c_privkey, c_msg)
+// 	result = C.GoString(c_result)
+// 	C.dogecoin_free(unsafe.Pointer(c_result))
+// 	C.free(unsafe.Pointer(c_privkey))
+// 	C.free(unsafe.Pointer(c_msg))
+// 	return
+// }
 
-func W_verify_message(sig string, msg string, address string) (result bool) {
-	c_sig := C.CString(sig)
-	c_msg := C.CString(msg)
-	c_address := C.CString(address)
-	if C.verify_message(c_sig, c_msg, c_address) != 0 {
-		result = true
-	} else {
-		result = false
-	}
-	C.free(unsafe.Pointer(c_sig))
-	C.free(unsafe.Pointer(c_msg))
-	C.free(unsafe.Pointer(c_address))
-	return
-}
+// func W_verify_message(sig string, msg string, address string) (result bool) {
+// 	c_sig := C.CString(sig)
+// 	c_msg := C.CString(msg)
+// 	c_address := C.CString(address)
+// 	if C.verify_message(c_sig, c_msg, c_address) != 0 {
+// 		result = true
+// 	} else {
+// 		result = false
+// 	}
+// 	C.free(unsafe.Pointer(c_sig))
+// 	C.free(unsafe.Pointer(c_msg))
+// 	C.free(unsafe.Pointer(c_address))
+// 	return
+// }
